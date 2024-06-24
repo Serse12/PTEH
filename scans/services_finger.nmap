@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Jun  4 09:41:06 2024 as: nmap -sC -sV -p- -oX ./services_finger.nmap 10.10.11.12 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -p- -oX ./services_finger.nmap 10.10.11.12" start="1717486866" startstr="Tue Jun  4 09:41:06 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.11.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1717486867" endtime="1717486908"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.10.11.12" addrtype="ipv4"/>
+<hostnames>
+<hostname name="capiclean.htb" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.9p1 Ubuntu 3ubuntu0.6" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.9p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  256 2c:f9:07:77:e3:f1:3a:36:db:f2:3b:94:e3:b7:cf:b2 (ECDSA)&#xa;  256 4a:91:9f:f2:74:c0:41:81:52:4d:f1:ff:2d:01:78:6b (ED25519)"><table>
+<elem key="fingerprint">2cf90777e3f13a36dbf23b94e3b7cfb2</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBG6uGZlOYFnD/75LXrnuHZ8mODxTWsOQia+qoPaxInXoUxVV4+56Dyk1WaY2apshU+pICxXMqtFR7jb3NRNZGI4=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">4a919ff274c04181524df1ff2d01786b</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJBnDPOYK91Zbdj8B2Q1MzqTtsc6azBJ+9CMI2E//Yyu</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.52" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.52</cpe></service><script id="http-server-header" output="&#xa;  Apache/2.4.52 (Ubuntu)&#xa;  Werkzeug/2.3.7 Python/3.10.12"><elem>Apache/2.4.52 (Ubuntu)</elem>
+<elem>Werkzeug/2.3.7 Python/3.10.12</elem>
+</script><script id="http-title" output="Capiclean"><elem key="title">Capiclean</elem>
+</script></port>
+</ports>
+<times srtt="53573" rttvar="1393" to="100000"/>
+</host>
+<runstats><finished time="1717486908" timestr="Tue Jun  4 09:41:48 2024" summary="Nmap done at Tue Jun  4 09:41:48 2024; 1 IP address (1 host up) scanned in 41.85 seconds" elapsed="41.85" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

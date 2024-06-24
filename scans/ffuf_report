@@ -1,0 +1,35 @@
+┌──(antonio㉿kali)-[~/all/pentesting/iclean/scans]
+└─$ ffuf -c -w ~/all/pentesting/wordlists/2m-subdomains.txt -u "http://capiclean.htb/FUZZ" -t 400
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://capiclean.htb/FUZZ
+ :: Wordlist         : FUZZ: /home/antonio/all/pentesting/wordlists/2m-subdomains.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 400
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+services                [Status: 200, Size: 8592, Words: 2325, Lines: 193, Duration: 1055ms]
+dashboard               [Status: 302, Size: 189, Words: 18, Lines: 6, Duration: 1068ms]
+about                   [Status: 200, Size: 5267, Words: 1036, Lines: 130, Duration: 1161ms]
+login                   [Status: 200, Size: 2106, Words: 297, Lines: 88, Duration: 1267ms]
+team                    [Status: 200, Size: 8109, Words: 2068, Lines: 183, Duration: 582ms]
+choose                  [Status: 200, Size: 6084, Words: 1373, Lines: 154, Duration: 610ms]
+logout                  [Status: 302, Size: 189, Words: 18, Lines: 6, Duration: 1210ms]
+quote                   [Status: 200, Size: 2237, Words: 98, Lines: 90, Duration: 410ms]
+sendMessage             [Status: 405, Size: 153, Words: 16, Lines: 6, Duration: 1181ms]
+QRGenerator             [Status: 302, Size: 189, Words: 18, Lines: 6, Duration: 1813ms]
+server-status           [Status: 403, Size: 278, Words: 20, Lines: 10, Duration: 835ms]
+

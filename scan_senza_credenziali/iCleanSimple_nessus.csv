@@ -1,0 +1,801 @@
+Plugin ID,CVE,CVSS v2.0 Base Score,Risk,Host,Protocol,Port,Name,Synopsis,Description,Solution,See Also,Plugin Output,STIG Severity,CVSS v3.0 Base Score,CVSS v2.0 Temporal Score,CVSS v3.0 Temporal Score,VPR Score,Risk Factor,BID,XREF,MSKB,Plugin Publication Date,Plugin Modification Date,Metasploit,Core Impact,CANVAS
+"10107","","","None","10.10.11.12","tcp","80","HTTP Server Type and Version","A web server is running on the remote host.","This plugin attempts to determine the type and the version of the
+  remote web server.","n/a","","The remote web server type is :
+
+Werkzeug/2.3.7 Python/3.10.12","","","","","","None","","IAVT:0001-T-0931","","2000/01/04","2020/10/30","","",""
+"10114","CVE-1999-0524","2.1","Low","10.10.11.12","icmp","0","ICMP Timestamp Request Remote Date Disclosure","It is possible to determine the exact time set on the remote host.","The remote host answers to an ICMP timestamp request.  This allows an
+attacker to know the date that is set on the targeted machine, which
+may assist an unauthenticated, remote attacker in defeating time-based
+authentication protocols.
+
+Timestamps returned from machines running Windows Vista / 7 / 2008 /
+2008 R2 are deliberately incorrect, but usually within 1000 seconds of
+the actual system time.","Filter out the ICMP timestamp requests (13), and the outgoing ICMP
+timestamp replies (14).","","The remote clock is synchronized with the local clock.
+","","","","","4.2","Low","","CWE:200","","1999/08/01","2024/05/03","","",""
+"10267","","","None","10.10.11.12","tcp","22","SSH Server Type and Version Information","An SSH server is listening on this port.","It is possible to obtain information about the remote SSH server by
+sending an empty authentication request.","n/a","","
+SSH version : SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+SSH supported authentication : publickey,password
+","","","","","","None","","IAVT:0001-T-0933","","1999/10/12","2020/09/22","","",""
+"10287","","","None","10.10.11.12","udp","0","Traceroute Information","It was possible to obtain traceroute information.","Makes a traceroute to the remote host.","n/a","","For your information, here is the traceroute from 10.10.14.29 to 10.10.11.12 : 
+10.10.14.29
+10.10.14.1
+10.10.11.12
+
+Hop Count: 2
+","","","","","","None","","","","1999/11/27","2023/12/04","","",""
+"10881","","","None","10.10.11.12","tcp","22","SSH Protocol Versions Supported","A SSH server is running on the remote host.","This plugin determines the versions of the SSH protocol supported by
+the remote SSH daemon.","n/a","","The remote SSH daemon supports the following versions of the
+SSH protocol :
+
+  - 1.99
+  - 2.0
+","","","","","","None","","","","2002/03/06","2021/01/19","","",""
+"11219","","","None","10.10.11.12","tcp","22","Nessus SYN scanner","It is possible to determine which TCP ports are open.","This plugin is a SYN 'half-open' port scanner.  It shall be reasonably
+quick even against a firewalled target. 
+
+Note that SYN scans are less intrusive than TCP (full connect) scans
+against broken services, but they might cause problems for less robust
+firewalls and also leave unclosed connections on the remote target, if
+the network is loaded.","Protect your target with an IP filter.","","Port 22/tcp was found to be open","","","","","","None","","","","2009/02/04","2024/05/20","","",""
+"11219","","","None","10.10.11.12","tcp","80","Nessus SYN scanner","It is possible to determine which TCP ports are open.","This plugin is a SYN 'half-open' port scanner.  It shall be reasonably
+quick even against a firewalled target. 
+
+Note that SYN scans are less intrusive than TCP (full connect) scans
+against broken services, but they might cause problems for less robust
+firewalls and also leave unclosed connections on the remote target, if
+the network is loaded.","Protect your target with an IP filter.","","Port 80/tcp was found to be open","","","","","","None","","","","2009/02/04","2024/05/20","","",""
+"11936","","","None","10.10.11.12","tcp","0","OS Identification","It is possible to guess the remote operating system.","Using a combination of remote probes (e.g., TCP/IP, SMB, HTTP, NTP,
+SNMP, etc.), it is possible to guess the name of the remote operating
+system in use. It is also possible sometimes to guess the version of
+the operating system.","n/a","","
+Remote operating system : Linux Kernel 2.6
+Confidence level : 65
+Method : SinFP
+
+ 
+The remote host is running Linux Kernel 2.6","","","","","","None","","","","2003/12/09","2023/11/08","","",""
+"12053","","","None","10.10.11.12","tcp","0","Host Fully Qualified Domain Name (FQDN) Resolution","It was possible to resolve the name of the remote host.","Nessus was able to resolve the fully qualified domain name (FQDN) of
+the remote host.","n/a","","
+10.10.11.12 resolves as capiclean.htb.
+","","","","","","None","","","","2004/02/11","2017/04/14","","",""
+"19506","","","None","10.10.11.12","tcp","0","Nessus Scan Information","This plugin displays information about the Nessus scan.","This plugin displays, for each tested host, information about the
+scan itself :
+
+  - The version of the plugin set.
+  - The type of scanner (Nessus or Nessus Home).
+  - The version of the Nessus Engine.
+  - The port scanner(s) used.
+  - The port range scanned.
+  - The ping round trip time 
+  - Whether credentialed or third-party patch management
+    checks are possible.
+  - Whether the display of superseded patches is enabled
+  - The date of the scan.
+  - The duration of the scan.
+  - The number of hosts scanned in parallel.
+  - The number of checks done in parallel.","n/a","","Information about this scan : 
+
+Nessus version : 10.7.3
+Nessus build : 20038
+Plugin feed version : 202406050359
+Scanner edition used : Nessus Home
+Scanner OS : LINUX
+Scanner distribution : ubuntu1404-x86-64
+Scan type : Normal
+Scan name : iCleanSimple
+Scan policy used : Basic Network Scan
+Scanner IP : 10.10.14.29
+Port scanner(s) : nessus_syn_scanner 
+Port range : default
+Ping RTT : 55.955 ms
+Thorough tests : no
+Experimental tests : no
+Scan for Unpatched Vulnerabilities : no
+Plugin debugging enabled : no
+Paranoia level : 1
+Report verbosity : 1
+Safe checks : yes
+Optimize the test : no
+Credentialed checks : no
+Patch management checks : None
+Display superseded patches : yes (supersedence plugin did not launch)
+CGI scanning : disabled
+Web application tests : disabled
+Max hosts : 30
+Max checks : 4
+Recv timeout : 5
+Backports : Detected
+Allow post-scan editing : Yes
+Nessus Plugin Signature Checking : Enabled
+Audit File Signature Checking : Disabled
+Scan Start Date : 2024/6/5 3:25 EDT
+Scan duration : 450 sec
+Scan for malware : no
+","","","","","","None","","","","2005/08/26","2024/06/04","","",""
+"22964","","","None","10.10.11.12","tcp","22","Service Detection","The remote service could be identified.","Nessus was able to identify the remote service by its banner or by
+looking at the error message it sends when it receives an HTTP
+request.","n/a","","An SSH server is running on this port.","","","","","","None","","","","2007/08/19","2024/03/26","","",""
+"22964","","","None","10.10.11.12","tcp","80","Service Detection","The remote service could be identified.","Nessus was able to identify the remote service by its banner or by
+looking at the error message it sends when it receives an HTTP
+request.","n/a","","A web server is running on this port.","","","","","","None","","","","2007/08/19","2024/03/26","","",""
+"24260","","","None","10.10.11.12","tcp","80","HyperText Transfer Protocol (HTTP) Information","Some information about the remote HTTP configuration can be extracted.","This test gives some information about the remote HTTP protocol - the
+version used, whether HTTP Keep-Alive is enabled, etc... 
+
+This test is informational only and does not denote any security
+problem.","n/a","","
+Response Code : HTTP/1.1 200 OK
+
+Protocol version : HTTP/1.1
+HTTP/2 TLS Support: No
+HTTP/2 Cleartext Support: No
+SSL : no
+Keep-Alive : yes
+Options allowed : (Not implemented)
+Headers :
+
+  Date: Wed, 05 Jun 2024 07:26:49 GMT
+  Server: Werkzeug/2.3.7 Python/3.10.12
+  Content-Type: text/html; charset=utf-8
+  Content-Length: 16697
+  Vary: Accept-Encoding
+  Keep-Alive: timeout=5, max=100
+  Connection: Keep-Alive
+  
+Response Body :
+
+<!DOCTYPE html>
+<html lang=""en"">
+<head>
+<!-- basic -->
+<meta charset=""utf-8"">
+<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+<meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+<!-- mobile metas -->
+<meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+<meta name=""viewport"" content=""initial-scale=1, maximum-scale=1"">
+<!-- site metas -->
+<title>Capiclean</title>
+<meta name=""keywords"" content="""">
+<meta name=""description"" content="""">
+<meta name=""author"" content=""""> 
+<!-- bootstrap css -->
+<link rel=""stylesheet"" type=""text/css"" href=""/static/css/bootstrap.min.css"">
+<!-- style css -->
+<link rel=""stylesheet"" type=""text/css"" href=""/static/css/style.css"">
+<!-- Responsive-->
+<link rel=""stylesheet"" href=""/static/css/responsive.css"">
+<!-- fevicon -->
+<link rel=""icon"" href=""static/images/favicon.png"" type=""image/png"" />
+<!-- Scrollbar Custom CSS -->
+<link rel=""stylesheet"" href=""/static/css/jquery.mCustomScrollbar.min.css"">
+<!-- Tweaks for older IEs-->
+<link rel=""stylesheet"" href=""https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"">
+<!-- owl stylesheets --> 
+<link rel=""stylesheet"" href=""/static/css/owl.carousel.min.css"">
+<link rel=""stylesheet"" href=""/static/css/owl.theme.default.min.css"">
+<link rel=""stylesheet"" href=""https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"" media=""screen"">
+</head>
+<body>
+  <!--header section start -->
+    <div class=""header_section"">
+      <div class=""container-fluid"">
+        <div class=""row"">
+          <div class=""col-md-3"">
+            <div class=""logo""><a href=""/""><img src=""/static/images/logo.png""></a></div>
+          </div>
+          <div class=""col-md-9"">
+            <div class=""menu_text"">
+              <ul>
+                <div class=""togle_3"">
+                  <div class=""menu_main"">
+                    <div class=""padding_left0""><a href=""#""></a>
+                    <span class=""padding_left0""><a href=""login"">Login</a></span></div>
+                  </div>
+                  <div class=""shoping_bag""><img src=""/static/images/search-icon.png""></div>
+                </div> 
+                <div id=""myNav"" class=""overlay"">
+                <a href=""javascript:void(0)"" class=""closebtn"" onclick=""closeNav()"">&times;</a>
+                <div class=""overlay-content"">
+                  <a href=""/"">Home</a>
+                  <a href=""services"">Services</a>
+                  <a href=""about"">About</a>
+                  <a href=""choose"">Choose</a>
+                  <a href=""team"">Team</a>
+                </div>
+                </div>
+                <span class=""navbar-toggler-icon""></span>
+                <span onclick=""openNav()""><img src=""/static/images/toggle-icon.png"" class=""toggle_menu""></span>
+              </ul>
+            </div>      
+          </div>
+        </div>
+      </div>
+    <!-- banner section start -->
+    <div class=""banner_section layout_padding"">
+      <div class=""container"">
+        <div class=""row"">
+          <div class=""col-sm-5"">
+            <h1 class=""banner_taital"">Keep YOUR</h1> 
+            <h1 class=""banner_taital_1"">house CLEAN</h1>
+            <p class=""banner_text"">Let us take care of the cleaning so that you can focus on what really matters – running your business or enjoying your home.</p>
+          </div>
+          <div class=""col-sm-5"">
+            <div><img src=""/static/images/img-1.png"" class=""image_1""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- banner section end -->
+    </div>
+    <!-- header section end -->
+    <!-- services section start -->
+    <div class=""services_section layout_padding"">
+      <div class=""container"">
+        <h1 class=""services_taital""><span>Our</span> <img src=""/static/images/icon-1.png""> <span style=""color: #1f1f1f"">Services</span></h1>
+        <p class=""services_text"">Our team of trained and experienced professionals use the latest equipment and cleaning products to ensure that every nook and cranny is spotless. From daily or weekly cleaning to deep cleaning and disinfection services, we have the expertise to handle any cleaning challenge.</p>
+        <div id=""main_slider"" class=""carousel slide"" data-ride=""carousel"">
+          <div class=""carousel-inner"">
+            <div class=""carousel-item active"">
+              <div class=""services_section_2 layout_padding"">
+                <div class=""row"">
+                  <div class=""col-md-6"">
+                    <div class=""box_section active"">
+                      <div class=""tiles_img""></div>
+                      <h3 class=""tile_text active"">Tile & Grout</h3>
+                      <p class=""lorem_text active"">Tile and grout cleaning is the process of removing dirt, stains, and bacteria from tile and grout surfaces.</p>
+                    </div>
+                  </div>
+                  <div class=""col-md-6"">
+                    <div class=""box_section"">
+                      <div class=""tiles_img_1""></div>
+                      <h3 class=""tile_text"">Carpet Cleaning</h3>
+                      <p class=""lorem_text"">Carpet cleaning is a process of removing dirt, stains, and allergens from carpets to improve their appearance and cleanliness</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=""carousel-item"">
+              <div class=""services_section_2 layout_padding"">
+                <div class=""row"">
+                  <div class=""col-md-6"">
+                    <div class=""box_section active"">
+                      <div class=""tiles_img""></div>
+                      <h3 class=""tile_text active"">Tile & Grout</h3>
+                      <p class=""lorem_text active"">Tile and grout cleaning is the process of removing dirt, stains, and bacteria from tile and grout surfaces.</p>
+                    </div>
+                  </div>
+                  <div class=""col-md-6"">
+                    <div class=""box_section"">
+                      <div class=""tiles_img_1""></div>
+                      <h3 class=""tile_text"">Carpet Cleaning</h3>
+                      <p class=""lorem_text"">Carpet cleaning is a process of removing dirt, stains, and allergens from carpets to improve their appearance and cleanliness</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=""carousel-item"">
+              <div class=""services_section_2 layout_padding"">
+                <div class=""row"">
+                  <div class=""col-md-6"">
+                    <div class=""box_section active"">
+                      <div class=""tiles_img""></div>
+                      <h3 class=""tile_text active"">Tile & Grout</h3>
+                      <p class=""lorem_text active"">Tile and grout cleaning is the process of removing dirt, stains, and bacteria from tile and grout surfaces.</p>
+                    </div>
+                  </div>
+                  <div class=""col-md-6"">
+                    <div class=""box_section"">
+                      <div class=""tiles_img_1""></div>
+                      <h3 class=""tile_text"">Carpet Cleaning</h3>
+                      <p class=""lorem_text"">Carpet cleaning is a process of removing dirt, stains, and allergens from carpets to improve their appearance and cleanliness</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class=""carousel-control-prev"" href=""#main_slider"" role=""button"" data-slide=""prev"">
+            <i class=""fa fa-angle-left""></i>
+          </a>
+          <a class=""carousel-control-next"" href=""#main_slider"" role=""button"" data-slide=""next"">
+            <i class=""fa fa-angle-right""></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- services section start -->
+    <!-- about section start -->
+    <div class=""about_section layout_padding"">
+      <div class=""container"">
+        <div class=""row"">
+          <div class=""col-md-6"">
+            <div><img src=""/static/images/img-2.png"" class=""image_2""></div>
+          </div>
+          <div class=""col-md-6"">
+            <h1 class=""services_taital""><span>About </span> <img src=""/static/images/icon-1.png""> <span style=""color: #1f1f1f"">Cleaning</span></h1>
+            <p class=""ipsum_text"">We understand that a clean and well-maintained space is essential to the success and productivity of any business or home. That's why we offer comprehensive cleaning services that are tailored to your unique needs and schedule. We take pride in providing reliable and efficient cleaning services that meet and exceed our clients' expectations. We strive to build long-term relationships with our clients based on trust, open communication, and exceptional service,</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- about section end -->
+    <!-- choose section start -->
+    <div class=""choose_section layout_padding"">
+      <div class=""container"">
+        <h1 class=""choose_taital""><span>Why </span> <img src=""/static/images/icon-1.png""> <span style=""color: #1f1f1f"">Choose Us</span></h1>
+        <p class=""choose_text"">Choose us to clean your house, car, office and othere buildings that require cleaning.</p>
+        <div class=""choose_section_2 layout_padding"">
+          <div class=""row"">
+            <div class=""col-lg-3 col-sm-6"">
+              <div class=""choose_box"">
+                <h1 class=""client_taital"">12004+</h1>
+                <h4 class=""client_text"">Our clients</h4>
+              </div>
+            </div>
+            <div class=""col-lg-3 col-sm-6"">
+              <div class=""choose_box"">
+                <h1 class=""client_taital"">10004+</h1>
+                <h4 class=""client_text"">Happy clients</h4>
+              </div>
+            </div>
+            <div class=""col-lg-3 col-sm-6"">
+              <div class=""choose_box"">
+                <h1 class=""client_taital"">804+</h1>
+                <h4 class=""client_text"">Supports</h4>
+              </div>
+            </div>
+            <div class=""col-lg-3 col-sm-6"">
+              <div class=""choose_box"">
+                <h1 class=""client_taital"">905+</h1>
+                <h4 class=""client_text"">Awards</h4>
+              </div>
+            </div>
+          </div>
+          <div class=""image_3""><img src=""/static/images/img-3.png""></div>
+          <div class=""get_bt""><a href=""quote"">Get A quote</a></div>
+        </div>
+      </div>
+    </div>
+    <!-- choose section end -->
+    <!-- team section start -->
+    <div class=""team_section layout_padding"">
+      <div class=""container"">
+        <h1 class=""choose_taital""><span>Our </span> <img src=""/static/images/icon-1.png""> <span style=""color: #1f1f1f"">Team</span></h1>
+        <p class=""choose_text"">Our team of professionals are ready to clean any dirty nasty stuff that needs cleaning profesionally.</p>
+        <div class=""team_section_2 layout_padding"">
+          <div class=""container"">
+            <div class=""images_main_1"">
+              <div class=""row"">
+                <div class=""col-sm-5"">
+                  <div class=""image_4""><img src=""/static/images/img-4.png""></div>
+                  <h6 class=""follow_text"">Follow Us</h6>
+                  <div class=""follow_social_icon"">
+                    <ul>
+                      <li><a href=""#""><img src=""/static/images/fb-icon.png""></a></li>
+                      <li><a href=""#""><img src=""/static/images/twitter-icon.png""></a></li>
+                      <li><a href=""#""><img src=""/static/images/linkden-icon.png""></a></li>
+                      <li><a href=""#""><img src=""/static/images/instagram-icon.png""></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class=""col-sm-7"">
+                  <h2 class=""consectetur_text"">Mary Pikes</h2>
+                  <p class=""dummy_text"">Introducing Mary Pikes: a dedicated and efficient cleaner with a flair for perfection. With Mary's meticulous attention to detail and commitment to excellence, your space will be transformed into a pristine haven. Trust Mary to bring a touch of sparkle to every corner, leaving you delighted with the results.</p>
+                </div>
+              </div>
+            </div>
+            <div class=""images_main"">
+              <div class=""row"">
+                <div class=""col-sm-7"">
+                  <h2 class=""consectetur_text_1"">Martha Smith</h2>
+                  <p class=""dummy_text_1"">Meet Martha, your passionate cleaner who brings joy to every space she touch. With 10 years of experience, she transforms spaces into immaculate sanctuaries, leaving smiles in her wake.</p>
+                </div>
+                <div class=""col-sm-5"">
+                  <div class=""image_4""><img src=""/static/images/img-5.png""></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class=""images_main_1"">
+              <div class=""row"">
+                <div class=""col-sm-5"">
+                  <div class=""image_4""><img src=""/static/images/img-6.png""></div>
+                  </div>
+                </div>
+                <div class=""col-sm-7"">
+                  <h2 class=""consectetur_text"">Jasmine Summers</h2>
+                  <p class=""dummy_text"">Meet Jasmine, your dedicated cleaner who takes pride in her work. With 5 years of experience, she brings a touch of magic to every corner, creating spaces that sparkle with cleanliness and warmth.</p>
+                </div>
+              </div>
+            </div>
+            <div class=""images_main"">
+              <div class=""row"">
+                <div class=""col-sm-7"">
+                  <h2 class=""consectetur_text_1"">Mike Samuels</h2>
+                  <p class=""dummy_text_1"">Meet Mike, your friendly and meticulous cleaner. With a passion for cleanliness and an eye for detail, Mike ensures that every space he touches shines with perfection. Trust Mike to leave your home or office spotless and inviting, every time.</p>
+                </div>
+                <div class=""col-sm-5"">
+                  <div class=""image_4""><img src=""/static/images/img-7.png""></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- team section start -->
+    <!-- footer section start -->
+    <div class=""footer_section layout_padding"">
+      <div class=""container"">
+        <div class=""footer_main"">
+          <div class=""footer_left"">
+            <h1 class=""contact_taital""><span>Contact </span> <img src=""/static/images/icon-2.png""> <span>Us</span></h1>
+          </div>
+          <div class=""footer_left"">
+            <div class=""location_text""><a href=""#""><img src=""/static/images/map-icon.png""><span class=""padding_left_15"">Locations</span></a></div>
+          </div>
+          <div class=""footer_left"">
+            <div class=""location_text""><a href=""#""><img src=""/static/images/call-icon.png""><span class=""padding_left_15"">+12 345678901234</span></a></div>
+          </div>
+          <div class=""footer_left"">
+            <div class=""location_text""><a href=""#""><img src=""/static/images/map-icon.png""><span class=""padding_left_15"">contact@capiclean.htb</span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class=""copyright_section"">
+      <div class=""container"">
+        <p class=""copyright_text"">Copyright 2023 All Right Reserved By <b>CapiClean</b></p>
+      </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src=""/static/js/jquery.min.js""></script>
+    <script src=""/static/js/popper.min.js""></script>
+    <script src=""/static/js/bootstrap.bundle.min.js""></script>
+    <script src=""/static/js/jquery-3.0.0.min.js""></script>
+    <script src=""/static/js/plugin.js""></script>
+    <!-- sidebar -->
+    <script src=""/static/js/jquery.mCustomScrollbar.concat.min.js""></script>
+    <script src=""/static/js/custom.js""></script>
+    <!-- javascript --> 
+    <script src=""/static/js/owl.carousel.js""></script>
+    <script src=""/static/js/jquery.fancybox.min.js""></script>
+    <script>
+    $(document).ready(function(){
+    $("".fancybox"").fancybox({
+    openEffect: ""none"",
+    closeEffect: ""none""
+    });
+         
+    $("".zoom"").hover(function(){
+         
+    $(this).addClass('transition');
+    }, function(){
+         
+    $(this).removeClass('transition');
+    });
+    });
+    </script> 
+    <script>
+     function openNav() {
+     document.getElementById(""myNav"").style.width = ""100%"";
+    }
+     function closeNav() {
+     document.getElementById(""myNav"").style.width = ""0%"";
+    }
+    </script>  
+</body>
+</html>","","","","","","None","","","","2007/01/30","2024/02/26","","",""
+"25220","","","None","10.10.11.12","tcp","0","TCP/IP Timestamps Supported","The remote service implements TCP timestamps.","The remote host implements TCP timestamps, as defined by RFC1323.  A
+side effect of this feature is that the uptime of the remote host can
+sometimes be computed.","n/a","http://www.ietf.org/rfc/rfc1323.txt","","","","","","","None","","","","2007/05/16","2023/10/17","","",""
+"39520","","","None","10.10.11.12","tcp","22","Backported Security Patch Detection (SSH)","Security patches are backported.","Security patches may have been 'backported' to the remote SSH server
+without changing its version number. 
+
+Banner-based checks have been disabled to avoid false positives. 
+
+Note that this test is informational only and does not denote any
+security problem.","n/a","https://access.redhat.com/security/updates/backporting/?sc_cid=3093","
+Give Nessus credentials to perform local checks.
+","","","","","","None","","","","2009/06/25","2015/07/07","","",""
+"43111","","","None","10.10.11.12","tcp","80","HTTP Methods Allowed (per directory)","This plugin determines which HTTP methods are allowed on various CGI
+directories.","By calling the OPTIONS method, it is possible to determine which HTTP
+methods are allowed on each directory.
+
+The following HTTP methods are considered insecure:
+  PUT, DELETE, CONNECT, TRACE, HEAD
+
+Many frameworks and languages treat 'HEAD' as a 'GET' request, albeit
+one without any body in the response. If a security constraint was
+set on 'GET' requests such that only 'authenticatedUsers' could
+access GET requests for a particular servlet or resource, it would be
+bypassed for the 'HEAD' version. This allowed unauthorized blind
+submission of any privileged GET request.
+
+As this list may be incomplete, the plugin also tests - if 'Thorough
+tests' are enabled or 'Enable web applications tests' is set to 'yes'
+in the scan policy - various known HTTP methods on each directory and
+considers them as unsupported if it receives a response code of 400,
+403, 405, or 501.
+
+Note that the plugin output is only informational and does not
+necessarily indicate the presence of any security vulnerabilities.","n/a","http://www.nessus.org/u?d9c03a9a
+http://www.nessus.org/u?b019cbdb
+https://www.owasp.org/index.php/Test_HTTP_Methods_(OTG-CONFIG-006)","Based on the response to an OPTIONS request :
+
+  - HTTP methods  GET  OPTIONS HEAD are allowed on : 
+
+    /
+
+","","","","","","None","","","","2009/12/10","2022/04/11","","",""
+"45590","","","None","10.10.11.12","tcp","0","Common Platform Enumeration (CPE)","It was possible to enumerate CPE names that matched on the remote
+system.","By using information obtained from a Nessus scan, this plugin reports
+CPE (Common Platform Enumeration) matches for various hardware and
+software products found on a host. 
+
+Note that if an official CPE is not available for the product, this
+plugin computes the best possible CPE based on the information
+available from the scan.","n/a","http://cpe.mitre.org/
+https://nvd.nist.gov/products/cpe","
+The remote operating system matched the following CPE : 
+
+  cpe:/o:linux:linux_kernel -> Linux Kernel
+
+Following application CPE's matched on the remote system : 
+
+  cpe:/a:jquery:jquery:3.0.0 -> jQuery
+  cpe:/a:jquery:jquery:3.3.1 -> jQuery
+  cpe:/a:openbsd:openssh:8.9 -> OpenBSD OpenSSH
+  cpe:/a:openbsd:openssh:8.9p1 -> OpenBSD OpenSSH
+  cpe:/a:python:python:3.10.12 -> Python
+","","","","","","None","","","","2010/04/21","2024/05/20","","",""
+"46215","","","None","10.10.11.12","tcp","0","Inconsistent Hostname and IP Address","The remote host's hostname is not consistent with DNS information.","The name of this machine either does not resolve or resolves to a
+different IP address. 
+
+This may come from a badly configured reverse DNS or from a host file
+in use on the Nessus scanning host. 
+
+As a result, URLs in plugin output may not be directly usable in a web
+browser and some web tests may be incomplete.","Fix the reverse DNS or host file.","","The host name 'capiclean.htb' does not resolve to an IP address","","","","","","None","","","","2010/05/03","2016/08/05","","",""
+"54615","","","None","10.10.11.12","tcp","0","Device Type","It is possible to guess the remote device type.","Based on the remote operating system, it is possible to determine
+what the remote system type is (eg: a printer, router, general-purpose
+computer, etc).","n/a","","Remote device type : general-purpose
+Confidence level : 65
+","","","","","","None","","","","2011/05/23","2022/09/09","","",""
+"66334","","","None","10.10.11.12","tcp","0","Patch Report","The remote host is missing several patches.","The remote host is missing one or more security patches. This plugin lists the newest version of each patch to install 
+to make sure the remote host is up-to-date.
+
+Note: Because the 'Show missing patches that have been superseded' setting in your scan policy depends on this plugin,
+it will always run and cannot be disabled.","Install the patches listed below.","","
+
+. You need to take the following action :
+
+[ JQuery 1.2 < 3.5.0 Multiple XSS (136929) ]
+
++ Action to take : Upgrade to JQuery version 3.5.0 or later.
+
+
+","","","","","","None","","","","2013/07/08","2024/05/23","","",""
+"70657","","","None","10.10.11.12","tcp","22","SSH Algorithms and Languages Supported","An SSH server is listening on this port.","This script detects which algorithms and languages are supported by
+the remote service for encrypting communications.","n/a","","
+Nessus negotiated the following encryption algorithm with the server : 
+
+The server supports the following options for kex_algorithms : 
+
+  curve25519-sha256
+  curve25519-sha256@libssh.org
+  diffie-hellman-group-exchange-sha256
+  diffie-hellman-group14-sha256
+  diffie-hellman-group16-sha512
+  diffie-hellman-group18-sha512
+  ecdh-sha2-nistp256
+  ecdh-sha2-nistp384
+  ecdh-sha2-nistp521
+  kex-strict-s-v00@openssh.com
+  sntrup761x25519-sha512@openssh.com
+
+The server supports the following options for server_host_key_algorithms : 
+
+  ecdsa-sha2-nistp256
+  rsa-sha2-256
+  rsa-sha2-512
+  ssh-ed25519
+
+The server supports the following options for encryption_algorithms_client_to_server : 
+
+  aes128-ctr
+  aes128-gcm@openssh.com
+  aes192-ctr
+  aes256-ctr
+  aes256-gcm@openssh.com
+  chacha20-poly1305@openssh.com
+
+The server supports the following options for encryption_algorithms_server_to_client : 
+
+  aes128-ctr
+  aes128-gcm@openssh.com
+  aes192-ctr
+  aes256-ctr
+  aes256-gcm@openssh.com
+  chacha20-poly1305@openssh.com
+
+The server supports the following options for mac_algorithms_client_to_server : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+  hmac-sha2-256
+  hmac-sha2-256-etm@openssh.com
+  hmac-sha2-512
+  hmac-sha2-512-etm@openssh.com
+  umac-128-etm@openssh.com
+  umac-128@openssh.com
+  umac-64-etm@openssh.com
+  umac-64@openssh.com
+
+The server supports the following options for mac_algorithms_server_to_client : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+  hmac-sha2-256
+  hmac-sha2-256-etm@openssh.com
+  hmac-sha2-512
+  hmac-sha2-512-etm@openssh.com
+  umac-128-etm@openssh.com
+  umac-128@openssh.com
+  umac-64-etm@openssh.com
+  umac-64@openssh.com
+
+The server supports the following options for compression_algorithms_client_to_server : 
+
+  none
+  zlib@openssh.com
+
+The server supports the following options for compression_algorithms_server_to_client : 
+
+  none
+  zlib@openssh.com
+","","","","","","None","","","","2013/10/28","2017/08/28","","",""
+"106658","","","None","10.10.11.12","tcp","80","JQuery Detection","The web server on the remote host uses JQuery.","Nessus was able to detect JQuery on the remote host.","n/a","https://jquery.com/","
+Nessus detected 2 installs of jquery:
+
+  URL     : http://10.10.11.12/static/js/jquery.min.js
+  Version : 3.3.1
+
+  URL     : http://10.10.11.12/static/js/jquery-3.0.0.min.js
+  Version : 3.0.0
+","","","","","","None","","","","2018/02/07","2024/02/08","","",""
+"110723","","","None","10.10.11.12","tcp","0","Target Credential Status by Authentication Protocol - No Credentials Provided","Nessus was able to find common ports used for local checks,
+however, no credentials were provided in the scan policy.","Nessus was not able to successfully authenticate directly to the
+remote target on an available authentication protocol. Nessus was
+able to connect to the remote port and identify that the service
+running on the port supports an authentication protocol, but Nessus
+failed to authenticate to the remote service using the provided
+credentials. There may have been a protocol failure that prevented
+authentication from being attempted or all of the provided credentials
+for the authentication protocol may be invalid. See plugin output for
+error details.
+
+Please note the following :
+
+- This plugin reports per protocol, so it is possible for
+  valid credentials to be provided for one protocol and not
+  another. For example, authentication may succeed via SSH
+  but fail via SMB, while no credentials were provided for
+  an available SNMP service.
+
+- Providing valid credentials for all available
+  authentication protocols may improve scan coverage, but
+  the value of successful authentication for a given
+  protocol may vary from target to target depending upon
+  what data (if any) is gathered from the target via that
+  protocol. For example, successful authentication via SSH
+  is more valuable for Linux targets than for Windows
+  targets, and likewise successful authentication via SMB
+  is more valuable for Windows targets than for Linux
+  targets.","n/a","","SSH was detected on port 22 but no credentials were provided.
+SSH local checks were not enabled.
+
+","","","","","","None","","IAVB:0001-B-0504","","2018/06/27","2024/04/19","","",""
+"117886","","","None","10.10.11.12","tcp","0","OS Security Patch Assessment Not Available","OS Security Patch Assessment is not available.","OS Security Patch Assessment is not available on the remote host.
+This does not necessarily indicate a problem with the scan.
+Credentials may not have been provided, OS security patch assessment
+may not be supported for the target, the target may not have been
+identified, or another issue may have occurred that prevented OS
+security patch assessment from being available. See plugin output for
+details.
+
+This plugin reports non-failure information impacting the availability
+of OS Security Patch Assessment. Failure information is reported by
+plugin 21745 : 'OS Security Patch Assessment failed'.  If a target
+host is not supported for OS Security Patch Assessment, plugin
+110695 : 'OS Security Patch Assessment Checks Not Supported' will
+report concurrently with this plugin.","n/a","","
+The following issues were reported :
+
+  - Plugin      : no_local_checks_credentials.nasl
+    Plugin ID   : 110723
+    Plugin Name : Target Credential Status by Authentication Protocol - No Credentials Provided
+    Message     : 
+Credentials were not provided for detected SSH service.
+","","","","","","None","","IAVB:0001-B-0515","","2018/10/02","2021/07/12","","",""
+"122364","","","None","10.10.11.12","tcp","80","Python Remote HTTP Detection","Python is running on the remote host.","A web server is running Python on the remote host.
+
+Note that the web server may be running on top of Python, or just running an embedded version.","n/a","https://www.python.org/","
+  Path    : /
+  Version : 3.10.12
+  Product : Python
+","","","","","","None","","","","2019/02/21","2024/05/20","","",""
+"136929","CVE-2020-11022","4.3","Medium","10.10.11.12","tcp","80","JQuery 1.2 < 3.5.0 Multiple XSS","The remote web server is affected by multiple cross site scripting
+vulnerability.","According to the self-reported version in the script, the version of JQuery hosted on the remote web server is greater
+than or equal to 1.2 and prior to 3.5.0. It is, therefore, affected by multiple cross site scripting vulnerabilities.
+
+Note, the vulnerabilities referenced in this plugin have no security impact on PAN-OS, and/or the scenarios 
+required for successful exploitation do not exist on devices running a PAN-OS release.","Upgrade to JQuery version 3.5.0 or later.","https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/
+https://security.paloaltonetworks.com/PAN-SA-2020-0007","
+  URL               : http://10.10.11.12/static/js/jquery-3.0.0.min.js
+  Installed version : 3.0.0
+  Fixed version     : 3.5.0
+","II","6.1","3.4","5.5","5.7","Medium","","IAVB:2020-B-0030;CEA-ID:CEA-2021-0004;CEA-ID:CEA-2021-0025","","2020/05/28","2024/03/08","","",""
+"136929","CVE-2020-11022","4.3","Medium","10.10.11.12","tcp","80","JQuery 1.2 < 3.5.0 Multiple XSS","The remote web server is affected by multiple cross site scripting
+vulnerability.","According to the self-reported version in the script, the version of JQuery hosted on the remote web server is greater
+than or equal to 1.2 and prior to 3.5.0. It is, therefore, affected by multiple cross site scripting vulnerabilities.
+
+Note, the vulnerabilities referenced in this plugin have no security impact on PAN-OS, and/or the scenarios 
+required for successful exploitation do not exist on devices running a PAN-OS release.","Upgrade to JQuery version 3.5.0 or later.","https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/
+https://security.paloaltonetworks.com/PAN-SA-2020-0007","
+  URL               : http://10.10.11.12/static/js/jquery.min.js
+  Installed version : 3.3.1
+  Fixed version     : 3.5.0
+","II","6.1","3.4","5.5","5.7","Medium","","IAVB:2020-B-0030;CEA-ID:CEA-2021-0004;CEA-ID:CEA-2021-0025","","2020/05/28","2024/03/08","","",""
+"136929","CVE-2020-11023","4.3","Medium","10.10.11.12","tcp","80","JQuery 1.2 < 3.5.0 Multiple XSS","The remote web server is affected by multiple cross site scripting
+vulnerability.","According to the self-reported version in the script, the version of JQuery hosted on the remote web server is greater
+than or equal to 1.2 and prior to 3.5.0. It is, therefore, affected by multiple cross site scripting vulnerabilities.
+
+Note, the vulnerabilities referenced in this plugin have no security impact on PAN-OS, and/or the scenarios 
+required for successful exploitation do not exist on devices running a PAN-OS release.","Upgrade to JQuery version 3.5.0 or later.","https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/
+https://security.paloaltonetworks.com/PAN-SA-2020-0007","
+  URL               : http://10.10.11.12/static/js/jquery-3.0.0.min.js
+  Installed version : 3.0.0
+  Fixed version     : 3.5.0
+","II","6.1","3.4","5.5","5.7","Medium","","IAVB:2020-B-0030;CEA-ID:CEA-2021-0004;CEA-ID:CEA-2021-0025","","2020/05/28","2024/03/08","","",""
+"136929","CVE-2020-11023","4.3","Medium","10.10.11.12","tcp","80","JQuery 1.2 < 3.5.0 Multiple XSS","The remote web server is affected by multiple cross site scripting
+vulnerability.","According to the self-reported version in the script, the version of JQuery hosted on the remote web server is greater
+than or equal to 1.2 and prior to 3.5.0. It is, therefore, affected by multiple cross site scripting vulnerabilities.
+
+Note, the vulnerabilities referenced in this plugin have no security impact on PAN-OS, and/or the scenarios 
+required for successful exploitation do not exist on devices running a PAN-OS release.","Upgrade to JQuery version 3.5.0 or later.","https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/
+https://security.paloaltonetworks.com/PAN-SA-2020-0007","
+  URL               : http://10.10.11.12/static/js/jquery.min.js
+  Installed version : 3.3.1
+  Fixed version     : 3.5.0
+","II","6.1","3.4","5.5","5.7","Medium","","IAVB:2020-B-0030;CEA-ID:CEA-2021-0004;CEA-ID:CEA-2021-0025","","2020/05/28","2024/03/08","","",""
+"149334","","","None","10.10.11.12","tcp","22","SSH Password Authentication Accepted","The SSH server on the remote host accepts password authentication.","The SSH server on the remote host accepts password authentication.","n/a","https://tools.ietf.org/html/rfc4252#section-8","","","","","","","None","","","","2021/05/07","2021/05/07","","",""
+"153588","","","None","10.10.11.12","tcp","22","SSH SHA-1 HMAC Algorithms Enabled","The remote SSH server is configured to enable SHA-1 HMAC algorithms.","The remote SSH server is configured to enable SHA-1 HMAC algorithms.
+
+Although NIST has formally deprecated use of SHA-1 for digital signatures, SHA-1 is still considered secure for HMAC as
+the security of HMAC does not rely on the underlying hash function being resistant to collisions.
+
+Note that this plugin only checks for the options of the remote SSH server.","n/a","","
+The following client-to-server SHA-1 Hash-based Message Authentication Code (HMAC) algorithms are supported : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+
+The following server-to-client SHA-1 Hash-based Message Authentication Code (HMAC) algorithms are supported : 
+
+  hmac-sha1
+  hmac-sha1-etm@openssh.com
+","","","","","","None","","","","2021/09/23","2022/04/05","","",""
+"181418","","","None","10.10.11.12","tcp","22","OpenSSH Detection","An OpenSSH-based SSH server was detected on the remote host.","An OpenSSH-based SSH server was detected on the remote host.","n/a","https://www.openssh.com/","
+  Service : ssh
+  Version : 8.9p1
+  Banner  : SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+","","","","","","None","","","","2023/09/14","2024/05/20","","",""

